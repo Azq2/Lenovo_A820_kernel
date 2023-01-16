@@ -1,18 +1,12 @@
 Proton kernel for Lenovo A820
 ===============================
 
-Compile with arm-eabi 4.7 or 4.8 toolchain
+### Toolchain
+Download gcc-arm-none-eabi-7-2018-q2-update from https://developer.arm.com/downloads/-/gnu-rm
+
+Then extract to /opt/gcc-arm-none-eabi-7-2018-q2-update
 
 ### Build the kernel
-$ cd kernel
-$ ./build.sh
-
-### Build the kernel with modules
-$ ./build.sh -m
-or
-$ ./build.sh -modules
-
-You can find the flashable zip in out directory
-
-### Cleanup
-$ ./clean.sh
+```
+./build.sh
+```
