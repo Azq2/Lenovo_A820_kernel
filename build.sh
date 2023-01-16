@@ -1,10 +1,11 @@
 #!/bin/bash
 
+set -e
+
 DIR=$(readlink -f $(dirname $0))
 
 # From https://developer.arm.com/downloads/-/gnu-rm
-# export CROSS_COMPILE=/opt/gcc-arm-none-eabi-5_3-2016q1/bin/arm-none-eabi-
-export CROSS_COMPILE="ccache /opt/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-"
+export CROSS_COMPILE="ccache /opt/gcc-arm-none-eabi-5_3-2016q1/bin/arm-none-eabi-"
 
 export CCACHE_DIR="$DIR/.ccache"
 export ARCH=arm
@@ -15,6 +16,7 @@ export KBUILD_BUILD_HOST=localhost
 export MTK_ROOT_CUSTOM="$DIR/mediatek/custom/"
 export KERNEL_OUT_DIR="$DIR/out"
 export RELEASE_OUT_DIR="$DIR/release"
+export LD_PRELOAD=
 
 [[ -d $CCACHE_DIR ]] || mkdir $CCACHE_DIR
 [[ -d $KERNEL_OUT_DIR ]] || mkdir $KERNEL_OUT_DIR
@@ -29,3 +31,5 @@ make -j$((`nproc` + 1)) -C "$DIR/kernel" O="$KERNEL_OUT_DIR" savedefconfig
 make -j$((`nproc` + 1)) -C "$DIR/kernel" O="$KERNEL_OUT_DIR" \
 	INSTALL_MOD_STRIP=--strip-unneeded INSTALL_MOD_PATH="$RELEASE_OUT_DIR" INSTALL_MOD_PATH="$RELEASE_OUT_DIR" android_modules_install
 cp -v "$KERNEL_OUT_DIR/arch/arm/boot/zImage" "$RELEASE_OUT_DIR/zImage"
+
+tree "$RELEASE_OUT_DIR"
