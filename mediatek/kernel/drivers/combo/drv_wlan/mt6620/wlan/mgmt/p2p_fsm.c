@@ -2405,7 +2405,6 @@ p2pFsmRunEventDeauthTxDone (
         eOriMediaStatus = prP2pBssInfo->eConnectionState;
 
 
-		bssRemoveStaRecFromClientList(prAdapter, prP2pBssInfo, prStaRec);
 
         /**/
         cnmStaRecFree(prAdapter, prStaRec, TRUE);
@@ -3231,16 +3230,7 @@ p2pRunEventAAAComplete (
 
         eOriMediaState = prP2pBssInfo->eConnectionState;
 
-        if(prStaRec != NULL){
-
-			    bssRemoveStaRecFromClientList(prAdapter, prP2pBssInfo, prStaRec);
-
-		    }
-		    else{
-
-			    break;
-
-		    }
+        bssRemoveStaRecFromClientList(prAdapter, prP2pBssInfo, prStaRec);
 
         if (prP2pBssInfo->rStaRecOfClientList.u4NumElem > P2P_MAXIMUM_CLIENT_COUNT ||
             kalP2PMaxClients(prAdapter->prGlueInfo, prP2pBssInfo->rStaRecOfClientList.u4NumElem)) {
