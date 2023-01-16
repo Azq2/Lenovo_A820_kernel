@@ -34,7 +34,7 @@
 
 
 config-type   := auto-merge
-merge-command := python $(MTK_ROOT_BUILD)/tools/config/merge-kconfig.py
+merge-command := python2 $(MTK_ROOT_BUILD)/tools/config/merge-kconfig.py
 merge-order   := \
     common \
     platform \

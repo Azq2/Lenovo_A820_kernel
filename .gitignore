@@ -118,3 +118,4 @@ x509.genkey
 
 # Don't commit out folder
 /out/
+/release/
