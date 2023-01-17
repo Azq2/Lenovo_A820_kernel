@@ -22,10 +22,7 @@ unset LD_PRELOAD
 [[ -d $RELEASE_OUT_DIR ]] || mkdir $RELEASE_OUT_DIR
 [[ -d $CCACHE_DIR ]] || mkdir $CCACHE_DIR
 
-echo "CROSS_COMPILE=$CROSS_COMPILE"
-
-cp -v "$DIR/kernel/mediatek-configs" "$KERNEL_OUT_DIR/.config"
-
+make -j$((`nproc` + 1)) -C "$DIR/kernel" O="$KERNEL_OUT_DIR" lenovo89_cu_jb_defconfig
 make -j$((`nproc` + 1)) -C "$DIR/kernel" O="$KERNEL_OUT_DIR"
 make -j$((`nproc` + 1)) -C "$DIR/kernel" O="$KERNEL_OUT_DIR" savedefconfig
 make -j$((`nproc` + 1)) -C "$DIR/kernel" O="$KERNEL_OUT_DIR" \
