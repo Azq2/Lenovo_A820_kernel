@@ -27,7 +27,7 @@ $(2): PRIVATE_FILE_LIST := $(3)
 $(2): $(3) $(4)
 	@echo "[CONFIG] generate $(2)"
 	@mkdir -p $(dir $(2))
-	@python $(4) $(3) > $(2)
+	@python2 $(4) $(3) > $(2)
 endef
 
 define .mtk.config.generate-auto-rules
@@ -58,7 +58,7 @@ else
 	@echo "[CONFIG] generate $$@"
 endif
 	$$(hide) if [ -e $$@ ]; then chmod u+w $$@; else mkdir -p $$(dir $$@); fi
-	$$(hide) python $$(MTK_ROOT_BUILD)/tools/config/merge-project.py $$(MTK_PROJECT_CONFIGS) > $$@
+	$$(hide) python2 $$(MTK_ROOT_BUILD)/tools/config/merge-project.py $$(MTK_PROJECT_CONFIGS) > $$@
 )
 endef
 
