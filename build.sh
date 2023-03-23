@@ -19,3 +19,6 @@ export LD_PRELOAD=
 
 ./mk -t -o=TARGET_BUILD_VARIANT=user lenovo_a820 n k
 
+mkdir -p "$DIR/releases/lib/modules"
+cp "$DIR/out/target/product/lenovo_a820/obj/KERNEL_OBJ/arch/arm/boot/zImage" "$DIR/releases/"
+tree "$DIR/releases/"

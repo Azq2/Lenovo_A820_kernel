@@ -60,6 +60,7 @@ ifeq ($(CONFIG_MTK_COMBO),y)
 endif
 	
 ifeq ($(CONFIG_MTK_COMBO),m)
+	ccflags-y += -I$(src)/drv_init/inc 	
 	obj-y += mtk_wcn_stub_alps.o
 	obj-y += wmt_stp_exp.o
 	
@@ -67,7 +68,6 @@ ifeq ($(CONFIG_MTK_COMBO),m)
 	mtk_wmt_detect-objs := wmt_detect.o
 	mtk_wmt_detect-objs += sdio_detect.o
 	mtk_wmt_detect-objs += wmt_detect_pwr.o
-
 endif
   
 # Otherwise we were called directly from the command

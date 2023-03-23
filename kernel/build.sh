@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Default settings
 verfile="android.ver"
 curcfg=".config"
@@ -152,8 +153,13 @@ else
   fi
 fi
 
+# override config
+make ${makeflags} ${makedefs} ${TARGET_PRODUCT}_defconfig
+
 # update configuration
 nice make ${makeflags} ${makedefs} silentoldconfig
+
+make ${makeflags} ${makedefs} savedefconfig
 
 if [ ! -z $KMOD_PATH ]; then
   echo "Build kernel module PROJECT=$MTK_PROJECT PATH=$KMOD_PATH";
